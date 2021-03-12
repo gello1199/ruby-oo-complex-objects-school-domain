@@ -10,20 +10,17 @@ class School
     end
 
     def add_student(name, grade)
-         if @roster[grade]
-            @roster[grade] << name 
-        else
-            @roster[grade] = [name]
-        end  
+        @roster[grade] ||= []
+        @roster[grade] << name  
     end
 
-    def grade(grade)
+    def grade(grade) #(grade) is a key
         @roster[grade]    
     end
 
     def sort
         new_list = {}
-        @roster.each {|key, value| new_list[key] = value.sort}
+        @roster.each {|grade, students| new_list[grade] = students.sort}
         new_list
-    end
+    end 
 end
